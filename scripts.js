@@ -1,3 +1,4 @@
+/*
 const url = 'https://blockchain.info/ticker';
 
 function recuperePrix() {
@@ -29,6 +30,73 @@ let interval = setInterval(recuperePrix, 1000);
     let date = new Date().toISOString().slice(0, 10); 
     let copyright = `<br/> ${date}<br/> AUTOMATIC UPDATE`;
     document.getElementById('data').innerHTML = copyright;
+*/
+
+//Methode fetch----------------------
+
+const url = 'https://blockchain.info/ticker';
+
+async function recuperePrix() {
+const requete = await fetch(url, {
+    method: 'GET'
+});
+if(!requete.ok) {
+    alert('Un erreur est survenue.');
+}else {
+    let donnees = await requete.json();
+    //console.log(donnees);
+    document.querySelector('span').textContent = donnees.EUR.last;
+}
+}
+
+setInterval(recuperePrix, 1000);
+//-------------------------------------
+
+
+/*const url = 'https://lesoublisdelinfo.com/api.php';
+
+let requete = new XMLHttpRequest();
+
+// Get
+//requete.open('GET', url);
+//requete.responseType = 'json';
+//requete.send();
+
+//Post
+requete.open('POST', url);
+requete.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+requete.responseType = 'json';
+requete.send('prenom=John');
+
+requete.onload = function () {
+    if (requete.readyState === XMLHttpRequest.DONE) {
+        if (requete.status === 200) {
+            let reponse = requete.response;
+            console.log(reponse);
+        } else {
+            alert('Un probleme est intervenu');
+        }
+    }
+}
+
+
+
+
+
+
+//created API
+
+/*<?php
+header('Access-Control-Allow-Origin: *');
+
+$prenom   = (isset($_POST['prenom'])) ? $_POST['prenom'] : 'anonyme';
+$resultat = 'Bonjour ' . $prenom . ' ! Here is the AJAX request !';
+$tableau  = ['prenom' => $prenom, 'resultat' => $resultat];
+echo json_encode($tableau);*/
+
+
+
+
 
 
 
