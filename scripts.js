@@ -26,10 +26,6 @@ requete.onload = function() {
 }
 let interval = setInterval(recuperePrix, 1000);
 
-
-    let date = new Date().toISOString().slice(0, 10); 
-    let copyright = `<br/> ${date}<br/> AUTOMATIC UPDATE`;
-    document.getElementById('data').innerHTML = copyright;
 */
 
 //Methode fetch----------------------
@@ -50,6 +46,9 @@ if(!requete.ok) {
 }
 
 setInterval(recuperePrix, 1000);
+let date = new Date().toISOString().slice(0, 10); 
+    let copyright = `<br/> ${date}<br/> AUTOMATIC UPDATE`;
+    document.getElementById('data').innerHTML = copyright;
 //-------------------------------------
 
 
